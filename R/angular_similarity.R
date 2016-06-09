@@ -24,23 +24,23 @@ angular_similarity <- function(a, b) {
 
     ang_sim_check(a, b)
     similarity <- as.vector(a %*% b / sqrt(sum(a^2) * sum(b^2)))
-    out <- 1 - ((acos(similarity)/ pi))
+    out <- 1 - ((acos(similarity) / pi))
     return(out)
-    
+
 }
 
 #' check inputs for angular_angular similarity
-#' 
+#'
 #' helper function
-#' 
+#'
 #' @param a vector
 #' @param b vector
 
 ang_sim_check <- function(a, b) {
-    if (!is.vector(a) || !is.vector(b)){
+    if (!is.vector(a) || !is.vector(b)) {
         stop("Inputs need to be vectors")
     }
-    if (!is.numeric(a) || !is.numeric(b)){
+    if (!is.numeric(a) || !is.numeric(b)) {
         stop("Inputs need to be numeric")
     }
     if (length(a) != length(b)){
@@ -48,7 +48,7 @@ ang_sim_check <- function(a, b) {
             substitute(a), "and", substitute(b), "need to be the same length")
         )
     }
-    if (length(a) < 2 || length(b) < 2){
+    if (length(a) < 2 || length(b) < 2) {
         stop("Vectors need to be at least 2 elements long")
     }
 }
