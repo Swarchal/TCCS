@@ -3,8 +3,11 @@ Title: Theta Comparative Cell Scoring
 Version: 0.0.0.1
 Authors@R: person("Scott", "Warchal", email = "S.Warchal@sms.ed.ac.uk", role = c("aut", "cre"))
 Description: A method to quantify differential responses in multivariate data.
-Depends: R (>= 3.1.0)
+Depends:
+    R (>= 3.1.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
