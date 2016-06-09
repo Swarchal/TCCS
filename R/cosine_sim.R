@@ -19,7 +19,7 @@
 
 cosine_sim_mat <- function(X, ...) {
 
-	cos_sim <- function(ix) {
+	cos_sim <- function(ix, ...) {
 	    A = X[ix[1],]
 	    B = X[ix[2],]
 	    sum(A * B) / sqrt(sum(A^2, ...) * sum(B^2, ...))
@@ -63,9 +63,6 @@ cosine_sim_mat <- function(X, ...) {
 
 cosine_sim_vector<- function(a, b, ...) {
 
-    # check inputs
-    cos_sim_check(a, b, ...)
-
     # is single row dataframe, convert to a numeric vector
     if (is.data.frame(a) && nrow(a) == 1) {
 	    a <- as.numeric(a)
@@ -74,34 +71,32 @@ cosine_sim_vector<- function(a, b, ...) {
 	    b <- as.numeric(b)
     }
 
+	cosine_sim_vec_check_input(a, b)
+
     sum(a * b, ...) / sqrt(sum(a^2, ...) * sum(b^2, ...))
 
 }
 
-#' check input for cosine_sim_vector
-#' 
+#' Check inputs for cosine_sim_vector
+#'
 #' helper function
-#' 
+#'
 #' @param a vector
 #' @param b vector
-#' @param ... additional arguments for \code{sum}
 
-cos_sim_check <- function(a, b, ...) {
+cosine_sim_vec_check_input <- function(a, b) {
 
-    # check inputs
-    if (!is.vector(a) || !is.vector(b)) {
-        stop("Inputs need to be vectors")
-    }
-    if (!is.numeric(a) || !is.numeric(b)) {
-        stop("Inputs need to be numeric")
-    }
-    if (length(a) != length(b)) {
-        stop("'a' and 'b' need to be the same length")
-    }
+	if (!is.vector(a) || !is.vector(b)) {
+		stop("Inputs need to be vectors")
+	}
+	if (!is.numeric(a) || !is.numeric(b)) {
+		stop("Inputs need to be numeric")
+	}
+	if (length(a) != length(b)) {
+		stop("'a' and 'b' need to be the same length")
+	}
+
 }
-
-
-
 
 #' Cosine similarity
 #'
