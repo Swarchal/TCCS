@@ -6,6 +6,8 @@
 #' @param x list
 #' @param cols integer, column indices
 #'
+#' @importFrom utils combn
+#'
 #' @return dataframe of compound combinations across replicates with a column
 #'    of cosine similarity values
 #'

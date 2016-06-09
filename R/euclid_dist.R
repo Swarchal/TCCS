@@ -4,6 +4,7 @@
 #'
 #' @param x numeric vector
 #' @param y numeric vector
+#' @importFrom stats dist
 #' @export
 #' @examples
 #' a <- rnorm(100)
@@ -15,5 +16,5 @@ euclid_dist <- function(x, y) {
     stopifnot(length(x) == length(y))
     stopifnot(is.numeric(x) && is.numeric(y))
     as.numeric(dist(rbind(as.numeric(x), as.numeric(y))))
-    
+
 }
