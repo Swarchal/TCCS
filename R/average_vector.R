@@ -28,7 +28,7 @@ average_vector <- function(x, fun = "mean", ...) {
 	} else if (fun == "median"){
 		as.vector(colMedians(x, ...))
 	} else {
-		stop(paste(x, "is not a valid fun, use mean of median"))
+		stop(paste(substitute(fun), "is not a valid function, use mean of median"))
 	}
 }
 

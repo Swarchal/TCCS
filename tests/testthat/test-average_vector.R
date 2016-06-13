@@ -19,6 +19,9 @@ test_that("fun argument works", {
 	median_out <- c(2, 10)
 	expect_equal(average_vector(x, fun = "mean"), mean_out, tolerance = 1e-4)
 	expect_equal(average_vector(x, fun = "median"), median_out, tolerance = 1e-4)
+	expect_error(average_vector(x, fun = "invalid"),
+		"invalid is not a valid function, use mean of median",
+		fixed = TRUE)
 })
 
 test_that("additional arguments are passed", {
