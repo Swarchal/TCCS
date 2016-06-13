@@ -12,3 +12,18 @@ test_that("Returns expected output", {
 	out <- average_vector(iris[, 1:4])
 	expect_equal(as.vector(simple), out)
 })
+
+test_that("fun argument works", {
+	x <- matrix(c(1,5,2,10,3,10), ncol = 2)
+	mean_out <- c(2.66667, 7.66667)
+	median_out <- c(2, 10)
+	expect_equal(average_vector(x, fun = "mean"), mean_out, tolerance = 1e-4)
+	expect_equal(average_vector(x, fun = "median"), median_out, tolerance = 1e-4)
+})
+
+test_that("additional arguments are passed", {
+	x <- matrix(c(1,5,2,10,NA,10), ncol = 2)
+	expect_equal(average_vector(x), c(2.66667, NA), tolerance = 1e-4)
+	expect_equal(average_vector(x, fun = "mean", na.rm = TRUE),
+		c(2.66667, 10), tolerance = 1e-4)
+})

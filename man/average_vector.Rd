@@ -4,10 +4,14 @@
 \alias{average_vector}
 \title{Calculates and average vector}
 \usage{
-average_vector(x)
+average_vector(x, fun = "mean", ...)
 }
 \arguments{
 \item{x}{Matrix of numerical data. Columns are components of the data, row per vector}
+
+\item{fun}{function to use, current options: mean, median}
+
+\item{...}{additional arguments to be passed to fun}
 }
 \value{
 Mean vector
@@ -18,5 +22,7 @@ Calculates an average vector from rows of multiple vectors
 \examples{
 x <- matrix(c(1,5,2,10,3,10), ncol = 2)
 average_vector(x)
+average_vector(x, fun = "median")
+average_vector(x, fun = "median", na.rm = TRUE)
 }
 
