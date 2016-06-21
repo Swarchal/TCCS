@@ -39,7 +39,7 @@ centre_control <- function(df, cols, cmpd_col, cmpd) {
 
     # shift values in columns
     for (i in seq_along(cols)){
-		df[, cols][i] <- df[, cols][i] + d[i]
+        df[, cols][i] <- df[, cols][i] + d[i]
     }
 
     return(df)

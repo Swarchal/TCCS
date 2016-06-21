@@ -17,29 +17,30 @@
 
 average_vector <- function(x, fun = "mean", ...) {
 
-	# check input
-	if (!is.matrix(x) && !is.data.frame(x)){
-		stop("Input needs to be a dataframe or a matrix")
-	}
+    # check input
+    if (!is.matrix(x) && !is.data.frame(x)){
+        stop("Input needs to be a dataframe or a matrix")
+    }
 
-	# data will be in the form of rows = vectors, columns = components
-	if (fun == "mean") {
-		as.vector(colMeans(x, ...))
-	} else if (fun == "median"){
-		as.vector(colMedians(x, ...))
-	} else {
-		stop(paste(substitute(fun), "is not a valid function, use mean of median"))
-	}
+    # data will be in the form of rows = vectors, columns = components
+    if (fun == "mean") {
+        as.vector(colMeans(x, ...))
+    } else if (fun == "median") {
+        as.vector(colMedians(x, ...))
+    } else {
+        stop(paste(substitute(fun),
+        "is not a valid function, use mean of median"))
+    }
 }
 
 
 #' column median
-#' 
-#' interal function
-#' 
+#'
+#' internal checking function
+#'
 #' @param x dataframe of matrix
 #' @param ... additional arguments to be passed to median
 
 colMedians <- function(x, ...) {
-	as.numeric(apply(x, 2, median, ...))
+    as.numeric(apply(x, 2, median, ...))
 }

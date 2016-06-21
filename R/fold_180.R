@@ -19,11 +19,15 @@
 fold_180 <- function(x) {
 
     fold_180_check(x)
-    
+
     out <- ifelse(x > 180,  360 - x, x)
     return(out)
 
 }
+
+
+#' check input for fold_180
+#' @param x numeric vector
 
 fold_180_check <- function(x) {
 

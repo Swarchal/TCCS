@@ -16,15 +16,15 @@
 
 cossim_to_angsim <- function(x){
 
-	# check range of values, give warning if outside
-	# possible cosine similarity values
-	range_x <- range(x, na.rm = TRUE)
-	if (range_x[1] < -1 || range_x[2] > 1){
-		warning("The values are outside the expected range of -1 to 1")
-	}
+    # check range of values, give warning if outside
+    # possible cosine similarity values
+    range_x <- range(x, na.rm = TRUE)
+    if (range_x[1] < -1 || range_x[2] > 1){
+        warning("The values are outside the expected range of -1 to 1")
+    }
 
-	disim <- 1 - acos(x) / pi
-	return(disim)
+    disim <- 1 - acos(x) / pi
+    return(disim)
 }
 
 
@@ -45,13 +45,13 @@ cossim_to_angsim <- function(x){
 
 angsim_to_cossim <- function(x){
 
-	# check range of values, should be between 0 and 1
-	# return warning if outside those values
-	range_x <- range(x, na.rm = TRUE)
-	if (range_x[1] < 0 || range_x[2] > 1){
-		warning("The values are outside the expected range of 0 to 1")
-	}
+    # check range of values, should be between 0 and 1
+    # return warning if outside those values
+    range_x <- range(x, na.rm = TRUE)
+    if (range_x[1] < 0 || range_x[2] > 1){
+        warning("The values are outside the expected range of 0 to 1")
+    }
 
-	similarity <- - cos(x * pi)
-	return(similarity)
+    similarity <- - cos(x * pi)
+    return(similarity)
 }

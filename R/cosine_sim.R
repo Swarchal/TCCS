@@ -20,9 +20,9 @@
 cosine_sim_mat <- function(X, ...) {
 
 	cos_sim <- function(ix, ...) {
-	    A = X[ix[1],]
-	    B = X[ix[2],]
-	    sum(A * B) / sqrt(sum(A^2, ...) * sum(B^2, ...))
+	    A <- X[ix[1],]
+	    B <- X[ix[2],]
+	    sum(A*B) / sqrt(sum(A^2, ...) * sum(B^2, ...))
 	}
 
 	# if given a dataframe, will try and convert to a matrix
@@ -61,7 +61,7 @@ cosine_sim_mat <- function(X, ...) {
 #' y <- rnorm(20)
 #' cosine_sim_vector(x, y)
 
-cosine_sim_vector<- function(a, b, ...) {
+cosine_sim_vector <- function(a, b, ...) {
 
     # is single row dataframe, convert to a numeric vector
     if (is.data.frame(a) && nrow(a) == 1) {
@@ -79,7 +79,7 @@ cosine_sim_vector<- function(a, b, ...) {
 
 #' Check inputs for cosine_sim_vector
 #'
-#' helper function
+#' helper function for \code{cosine_sim_vector}
 #'
 #' @param a vector
 #' @param b vector

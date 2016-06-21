@@ -24,6 +24,9 @@ theta <- function(a, b) {
     as.vector(acos(a %*% b / (norm_vector(a) * norm_vector(b)))) * 180/pi
 }
 
+
+
+
 #' norm of a vector
 #'
 #' @param x vector
@@ -43,8 +46,8 @@ norm_vec <- function(x) {
 #' Calculates the angle (in degrees) between a vector and the origin (1,0)
 #'
 #' @param a Vector
-#' @return Angle, in degrees
-#' 
+#' @return Angle in degrees
+#'
 #' @export
 #'
 #' @examples
@@ -59,8 +62,6 @@ norm_vec <- function(x) {
 
 
 theta0 <- function(a) {
-
-    # computes the angle between a vector and the origin
 
     if (length(a) != 2) {
         stop("input vector needs to have a length of 2")
@@ -101,5 +102,5 @@ theta0_ <- function(a){
 
     origin <- c(1, rep(0, (length(a) - 1)))
     stopifnot(length(a) == length(origin))
-    as.vector(acos(a %*% origin / (norm_vec(a) * norm_vec(origin))) * 180/pi)
+    as.vector(acos(a %*% origin / (norm_vec(a) * norm_vec(origin))) * 180 / pi)
 }
