@@ -58,7 +58,7 @@ cosine_pairs <- function(x, cols) {
             val <- numeric(length = nrow(tmp2))
 
            for (k in 1:nrow(tmp2)) {
-               val[k] <- cosine_sim_vector(tmp1[j, cols], tmp2[k, cols]))
+               val[k] <- cosine_sim_vector(tmp1[j, cols], tmp2[k, cols])
 
       }
 
