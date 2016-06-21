@@ -12,6 +12,6 @@ colMedians(x, ...)
 \item{...}{additional arguments to be passed to median}
 }
 \description{
-interal function
+internal checking function
 }
 

@@ -38,6 +38,7 @@ average_vector <- function(x, fun = "mean", ...) {
 #'
 #' internal checking function
 #'
+#' @importFrom stats median
 #' @param x dataframe of matrix
 #' @param ... additional arguments to be passed to median
 

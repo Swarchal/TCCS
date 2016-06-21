@@ -12,24 +12,19 @@
 #'    of cosine similarity values
 #'
 #' @export
-#'
 #' @examples
 #' cmpds <- c(rep('a', 100), rep('b', 100), rep('c', 100))
 #' replicate <- rep(1:100, 3)
 #' PC1 <- rnorm(300)
 #' PC2 <- rnorm(300)
-#'
 #' df <- data.frame(cmpds, replicate, PC1, PC2)
-#'
 #' df_split <- split(df, df$cmpds)
-#'
 #' # works with unequal replicate sizes
 #' df_split$a <- df_split$a[-c(1:10), ]
-#'
 #' cosine_pairs(df_split, 3:4)
 
-
 cosine_pairs <- function(x, cols) {
+
 
     if (!is.list(x) || is.data.frame(x)) {
         stop(paste(substitute(x), "should be a list"),

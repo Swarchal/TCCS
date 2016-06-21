@@ -10,7 +10,7 @@ theta0(a)
 \item{a}{Vector}
 }
 \value{
-Angle, in degrees
+Angle in degrees
 }
 \description{
 Calculates the angle (in degrees) between a vector and the origin (1,0)

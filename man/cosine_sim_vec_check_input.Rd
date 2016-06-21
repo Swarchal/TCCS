@@ -12,6 +12,6 @@ cosine_sim_vec_check_input(a, b)
 \item{b}{vector}
 }
 \description{
-helper function
+helper function for \code{cosine_sim_vector}
 }
 
