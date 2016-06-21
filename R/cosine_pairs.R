@@ -32,10 +32,9 @@
 cosine_pairs <- function(x, cols) {
 
     if (!is.list(x) || is.data.frame(x)) {
-       stop(paste(substitute(x), "should be a list"),
-            call. = FALSE)
+        stop(paste(substitute(x), "should be a list"),
+             call. = FALSE)
     }
-
 
     # initialise empty vectors
     # TODO pre-allocate vector lengths
@@ -48,25 +47,31 @@ cosine_pairs <- function(x, cols) {
     pairs_names <- t(combn(name, 2))
 
     for (i in 1:nrow(pairs_names)) {
+
        tmp1 <- x[[pairs_names[i, 1]]]
        tmp2 <- x[[pairs_names[i, 2]]]
+
+
+        # store values in a matrix
+        mat <- matrix(nrow = nrow(tmp1),
+                      ncol = nrow(tmp2))
 
         # loop through rows in cmpd A and cmpd B
         # calculate the cosine similarity between the two vectors
         for (j in 1:nrow(tmp1)) {
+            for (k in 1:nrow(tmp2)) {
+                mat[j, k] <- cosine_sim_vector(tmp1[j, cols],
+                                               tmp2[k, cols])
+            }
 
-            val <- numeric(length = nrow(tmp2))
+        }
 
-           for (k in 1:nrow(tmp2)) {
-               val[k] <- cosine_sim_vector(tmp1[j, cols], tmp2[k, cols])
-
-      }
-
+        val <- as.vector(mat)
         vals <- append(vals, val)
-        A <- append(A, rep(pairs_names[i, 1]), nrow(tmp2))
-        B <- append(B, rep(pairs_names[i, 2]), nrow(tmp2))
+        A <- append(A, rep(pairs_names[i, 1], length(val)))
+        B <- append(B, rep(pairs_names[i, 2], length(val)))
 
     }
-  }
+
     data.frame(A, B, vals)
 }
