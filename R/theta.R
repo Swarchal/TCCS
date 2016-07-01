@@ -21,7 +21,7 @@
 
 theta <- function(a, b) {
 
-    as.vector(acos(a %*% b / (norm_vector(a) * norm_vector(b)))) * 180/pi
+    as.vector(acos(a %*% b / (norm_vector(a) * norm_vector(b)))) * 180 / pi
 }
 
 
