@@ -21,9 +21,9 @@ out_unequal <- cosine_pairs(df_split, 3:4)
 
 test_that("cosine_pairs returns expected output",{
 	expect_true(is.data.frame(out_unequal))
-	expect_equal(nrow(out), 30000)
+	expect_equal(nrow(out), 60000)
 	expect_equal(ncol(out), 3)
-	expect_equal(nrow(out_unequal), 28000)
+	expect_equal(nrow(out_unequal), 56100)
 })
 
 
@@ -40,7 +40,10 @@ test <- cosine_pairs(split_df, 2:3)
 
 
 test_that("cosine_pairs returns correct results",{
-	expect_equal(test$val, c(-1, -1, -1, -1), tolerance = 1e-5)
+	expect_equal(test$val, c(1, 1, 1, 1,
+                             -1, -1, -1, -1,
+                             1, 1, 1, 1),
+                 tolerance = 1e-5)
 })
 
 

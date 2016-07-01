@@ -7,9 +7,10 @@
 cosine_pairs(x, cols)
 }
 \arguments{
-\item{x}{list}
+\item{x}{list, each element being a separate compound}
 
-\item{cols}{integer, column indices}
+\item{cols}{integer, column indices that match numeric data (e.g principal
+comonents)}
 }
 \value{
 dataframe of compound combinations across replicates with a column
@@ -18,10 +19,14 @@ dataframe of compound combinations across replicates with a column
 \description{
 Given a list, with an element per compound, \code{cols}
 are the elements of the vector with which to calculate the cosine
-similarity
+similarity. \code{cosine_pairs} will calculate the theta value between all
+replicates for each possible pairing of compounds and return the result
+in a long-format dataframe.
 }
 \examples{
-cmpds <- c(rep('a', 100), rep('b', 100), rep('c', 100))
+cmpds <- c(rep('compound_1', 100),
+           rep('compound_2', 100),
+           rep('compound_3', 100))
 replicate <- rep(1:100, 3)
 PC1 <- rnorm(300)
 PC2 <- rnorm(300)

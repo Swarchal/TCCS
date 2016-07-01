@@ -2,18 +2,25 @@
 #'
 #' Given a list, with an element per compound, \code{cols}
 #' are the elements of the vector with which to calculate the cosine
-#' similarity
-#' @param x list
-#' @param cols integer, column indices
+#' similarity. \code{cosine_pairs} will calculate the theta value between all
+#' replicates for each possible pairing of compounds and return the result
+#' in a long-format dataframe.
+#'
+#' @param x list, each element being a separate compound
+#' @param cols integer, column indices that match numeric data (e.g principal
+#'      comonents)
 #'
 #' @importFrom utils combn
+#' @importFrom gtools combinations
 #'
 #' @return dataframe of compound combinations across replicates with a column
 #'    of cosine similarity values
 #'
 #' @export
 #' @examples
-#' cmpds <- c(rep('a', 100), rep('b', 100), rep('c', 100))
+#' cmpds <- c(rep('compound_1', 100),
+#'            rep('compound_2', 100),
+#'            rep('compound_3', 100))
 #' replicate <- rep(1:100, 3)
 #' PC1 <- rnorm(300)
 #' PC2 <- rnorm(300)
@@ -39,7 +46,8 @@ cosine_pairs <- function(x, cols) {
 
     # get pairs of compounds
     name <- names(x)
-    pairs_names <- t(combn(name, 2))
+    pairs_names <- combinations(n = length(name), 2, name,
+                                repeats.allowed = TRUE)
 
     for (i in 1:nrow(pairs_names)) {
 
@@ -53,6 +61,7 @@ cosine_pairs <- function(x, cols) {
 
         # loop through rows in cmpd A and cmpd B
         # calculate the cosine similarity between the two vectors
+        # TODO write this loop in c++
         for (j in 1:nrow(tmp1)) {
             for (k in 1:nrow(tmp2)) {
                 mat[j, k] <- cosine_sim_vector(tmp1[j, cols],
@@ -61,8 +70,13 @@ cosine_pairs <- function(x, cols) {
 
         }
 
+        # flatten the matrix into a single vector
         val <- as.vector(mat)
+
+        # append theta values from each pair
         vals <- append(vals, val)
+
+        # compound names
         A <- append(A, rep(pairs_names[i, 1], length(val)))
         B <- append(B, rep(pairs_names[i, 2], length(val)))
 
@@ -70,3 +84,5 @@ cosine_pairs <- function(x, cols) {
 
     data.frame(A, B, vals)
 }
+
+
