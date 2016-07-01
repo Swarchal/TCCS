@@ -5,6 +5,8 @@ Authors@R: person("Scott", "Warchal", email = "S.Warchal@sms.ed.ac.uk", role = c
 Description: A method to quantify differential responses in multivariate data.
 Depends:
     R (>= 3.1.0)
+Imports:
+    gtools
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
