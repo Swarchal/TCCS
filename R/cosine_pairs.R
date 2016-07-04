@@ -9,6 +9,7 @@
 #' @param x list, each element being a separate compound
 #' @param cols integer, column indices that match numeric data (e.g principal
 #'      comonents)
+#' @param degrees boolean, if true will convert cosine similarity to degrees
 #'
 #' @importFrom utils combn
 #' @importFrom gtools combinations
@@ -30,7 +31,7 @@
 #' df_split$a <- df_split$a[-c(1:10), ]
 #' cosine_pairs(df_split, 3:4)
 
-cosine_pairs <- function(x, cols) {
+cosine_pairs <- function(x, cols, degrees = TRUE) {
 
 
     if (!is.list(x) || is.data.frame(x)) {
@@ -82,6 +83,10 @@ cosine_pairs <- function(x, cols) {
 
     }
 
+    # convert cosine similarity to 0 -> 180 degrees
+    if (degrees) {
+        vals <- (1 - cossim_to_angsim(vals)) / (1/180)
+    }
     data.frame(A, B, vals)
 }
 
