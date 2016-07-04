@@ -14,10 +14,6 @@ out <- cosine_pairs(df_split, 3:4)
 df_split$a <- df_split$a[-c(1:10), ]
 out_unequal <- cosine_pairs(df_split, 3:4)
 
-# test_that("cosine_pairs returns errors when expected",{
-# 	expect_error(cosine_pairs(df, 1:4))
-# 	expect_error(print(cosine_pairs(df_split, 1:2)))
-# })
 
 test_that("cosine_pairs returns expected output",{
 	expect_true(is.data.frame(out_unequal))
@@ -27,19 +23,16 @@ test_that("cosine_pairs returns expected output",{
 })
 
 
-# known answers:
-A <- c('a', 'a', 'b', 'b')
-PC1 <- c(1, 1, -1, -1)
-PC2 <- c(2, 2, -2, -2)
-df <- data.frame(A, PC1, PC2)
-df
-split_df <- split(df, df$A)
-test <- cosine_pairs(split_df, 2:3)
+test_that("cosine_pairs returns correct results", {
 
+    # known answers:
+    A <- c('a', 'a', 'b', 'b')
+    PC1 <- c(1, 1, -1, -1)
+    PC2 <- c(2, 2, -2, -2)
+    df <- data.frame(A, PC1, PC2)
+    split_df <- split(df, df$A)
+    test <- cosine_pairs(split_df, 2:3)
 
-
-
-test_that("cosine_pairs returns correct results",{
 	expect_equal(test$val, c(1, 1, 1, 1,
                              -1, -1, -1, -1,
                              1, 1, 1, 1),
@@ -47,6 +40,48 @@ test_that("cosine_pairs returns correct results",{
 })
 
 
+test_that("cosine_pairs returns correct results", {
+
+    # known answers
+    # with orthogonal vectors
+    A <- c("a", "a", "b", "b", "c", "c")
+    PC1 <- c(1, 1, -1, -1, 2, 2)
+    PC2 <- c(2, 2, -2, -2, -1, -1)
+    df <- data.frame(A, PC1, PC2)
+    df_split <- split(df, df$A)
+    test <- cosine_pairs(df_split, 2:3)
+
+    ans <- c(1, 1, 1, 1,
+            -1, -1, -1, -1,
+            0, 0, 0, 0,
+            1, 1, 1, 1,
+            0, 0, 0, 0,
+            1, 1, 1, 1)
+
+    expect_equal(test$vals, ans, tolerance = 1e-7)
+})
+
+test_that("cosine_pairs works with more than 2 dimensions", {
+
+    # known answers
+    # three principal components
+    A <- c("a", "a", "b", "b")
+    PC1 <- c(1, 1, -1, -1)
+    PC2 <- c(2, 2, -2, -2)
+    PC3 <- c(1, 1, -1,  -1)
+    df <- data.frame(A, PC1, PC2, PC3)
+    df_split <- split(df, df$A)
+    test <- cosine_pairs(df_split, 2:4)
+
+    ans <- c(1, 1, 1, 1,
+            -1, -1, -1, -1,
+             1, 1, 1, 1)
+
+    expect_equal(ncol(test), 3)
+    expect_is(test, "data.frame")
+    expect_equal(test$vals, ans)
+
+})
 
 # new algorithm alters the order of results
 # answer from original algorithm
