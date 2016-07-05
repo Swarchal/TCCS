@@ -20,7 +20,7 @@ cossim_to_angsim <- function(x){
     # possible cosine similarity values
     range_x <- range(x, na.rm = TRUE)
     if (range_x[1] < -1 || range_x[2] > 1){
-        warning("The values are outside the expected range of -1 to 1")
+        warning("The input values are outside the expected range of -1 to 1")
     }
 
     disim <- 1 - acos(x) / pi
@@ -49,7 +49,7 @@ angsim_to_cossim <- function(x){
     # return warning if outside those values
     range_x <- range(x, na.rm = TRUE)
     if (range_x[1] < 0 || range_x[2] > 1){
-        warning("The values are outside the expected range of 0 to 1")
+        warning("The input values are outside the expected range of 0 to 1")
     }
 
     similarity <- - cos(x * pi)
